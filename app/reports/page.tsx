@@ -207,8 +207,8 @@ const getHarmTypeColor = (harmType: string) => {
       return "bg-red-50 text-red-700 border-red-200"
     case "Impersonation":
       return "bg-orange-50 text-orange-700 border-orange-200"
-    case "Fraud/Scam":
-    case "Fraud":
+    case "Fraud_and_Scams":
+    case "Fraud_and_Scams":
       return "bg-purple-50 text-purple-700 border-purple-200"
     case "NCCI":
       return "bg-blue-50 text-blue-700 border-blue-200"

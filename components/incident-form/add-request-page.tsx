@@ -384,14 +384,14 @@ const singlePlatformUrl = singlePlatform ? PLATFORM_REPORT_URLS[singlePlatform] 
     e.preventDefault()
 
     // Single-platform guardrail: open platform reporting and stop flow
-    if (singlePlatformUrl) {
-      // optional callback if you want to track/branch UI
-      try {
-        onDeferToPlatform?.()
-      } catch {}
-      window.open(singlePlatformUrl, "_blank", "noopener,noreferrer")
-      return
-    }
+    // if (singlePlatformUrl) {
+    //   // optional callback if you want to track/branch UI
+    //   try {
+    //     onDeferToPlatform?.()
+    //   } catch {}
+    //   window.open(singlePlatformUrl, "_blank", "noopener,noreferrer")
+    //   return
+    // }
 
     if (!validateForm()) return
     onSubmitAccountInfo(formData)
@@ -416,7 +416,7 @@ const singlePlatformUrl = singlePlatform ? PLATFORM_REPORT_URLS[singlePlatform] 
           <form onSubmit={handleSubmit} className="space-y-10">
             {/* Single-platform banner */}
             {/* Single-platform banner */}
-{singlePlatform && singlePlatformUrl && (
+{/* {singlePlatform && singlePlatformUrl && (
   <Alert className="border-amber-200 bg-amber-50">
     <AlertCircle className="h-4 w-4" />
     <AlertTitle className="text-amber-900 font-semibold">Single-platform report detected</AlertTitle>
@@ -438,7 +438,7 @@ const singlePlatformUrl = singlePlatform ? PLATFORM_REPORT_URLS[singlePlatform] 
       </div>
     </AlertDescription>
   </Alert>
-)}
+)} */}
 
 
             {/* Submitter Info */}

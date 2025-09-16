@@ -1,4 +1,4 @@
-export type HarmType = "Hacked" | "Impersonation" | "NCII" | "Fraud"
+export type HarmType = "Hacked" | "Impersonation" | "NCII" | "Fraud_and_Scams"
 
 export type PlatformSelect = 
   | "Instagram"

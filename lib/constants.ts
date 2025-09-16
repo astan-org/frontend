@@ -1,7 +1,7 @@
 import type { HarmType, PlatformSelect, IncidentClassification, IncidentFormData } from "@/types"
 
 // Harm Types
-export const HARM_TYPES: HarmType[] = ["Hacked", "Impersonation", "NCII", "Fraud"]
+export const HARM_TYPES: HarmType[] = ["Hacked", "Impersonation", "NCII", "Fraud_and_Scams"]
 
 // All Platforms for General Selection Dropdown
 export const ALL_PLATFORMS_SELECT: PlatformSelect[] = [
@@ -33,25 +33,25 @@ export const PLATFORM_HARM_REQUIREMENTS: Record<PlatformSelect, Partial<Record<H
     Hacked: ["victimUrl", "emailUsedToOpen", "newEmailToRecover"],
     Impersonation: ["fakeAccountUrls", "realAccountUrl"],
     NCII: ["nciiUrls", "victimUrlOrPhone"],
-    Fraud: ["fraudEvidenceUrl", "victimUrlOrPhone"],
+    Fraud_and_Scams: ["fraudEvidenceUrl", "victimUrlOrPhone"],
   },
   Facebook: {
     Hacked: ["victimUrl", "emailUsedToOpen", "newEmailToRecover"],
     Impersonation: ["fakeAccountUrls", "realAccountUrl"],
     NCII: ["nciiUrls", "victimUrlOrPhone"],
-    Fraud: ["fraudEvidenceUrl", "victimUrlOrPhone"],
+    Fraud_and_Scams: ["fraudEvidenceUrl", "victimUrlOrPhone"],
   },
   Messenger: {
     Hacked: ["victimUrl", "emailUsedToOpen", "newEmailToRecover"],
     Impersonation: ["fakeAccountUrls", "realAccountUrl"],
     NCII: ["nciiUrls", "victimUrlOrPhone"],
-    Fraud: ["fraudEvidenceUrl", "victimUrlOrPhone"],
+    Fraud_and_Scams: ["fraudEvidenceUrl", "victimUrlOrPhone"],
   },
   WhatsApp: {
     Hacked: ["victimPhoneNumber", "victimEmailAddress"],
     Impersonation: ["victimPhoneNumber", "victimEmailAddress"],
     NCII: ["victimPhoneNumber", "victimEmailAddress"],
-    Fraud: ["victimPhoneNumber", "victimEmailAddress"],
+    Fraud_and_Scams: ["victimPhoneNumber", "victimEmailAddress"],
   },
   Twitter: {},
   LinkedIn: {},

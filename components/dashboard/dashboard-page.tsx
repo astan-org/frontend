@@ -72,7 +72,7 @@ const platformDistributionData = [
     percentage: 39.7,
     color: "#f97316",
     harmTypes: [
-      { name: "Fraud/Scam", incidents: 1298, color: "#8b5cf6" },
+      { name: "Fraud_and_Scams", incidents: 1298, color: "#8b5cf6" },
       { name: "Impersonation", incidents: 974, color: "#f97316" },
       { name: "Hacked Account", incidents: 649, color: "#ef4444" },
       { name: "Harassment", incidents: 324, color: "#06b6d4" },
@@ -85,7 +85,7 @@ const platformDistributionData = [
     color: "#ef4444",
     harmTypes: [
       { name: "Hacked Account", incidents: 653, color: "#ef4444" },
-      { name: "Fraud/Scam", incidents: 490, color: "#8b5cf6" },
+      { name: "Fraud_and_Scams", incidents: 490, color: "#8b5cf6" },
       { name: "Impersonation", incidents: 327, color: "#f97316" },
       { name: "NCII", incidents: 164, color: "#ec4899" },
     ],
@@ -97,7 +97,7 @@ const platformDistributionData = [
     color: "#dc2626",
     harmTypes: [
       { name: "Hacked Account", incidents: 200, color: "#ef4444" },
-      { name: "Fraud/Scam", incidents: 150, color: "#8b5cf6" },
+      { name: "Fraud_and_Scams", incidents: 150, color: "#8b5cf6" },
       { name: "Harassment", incidents: 100, color: "#06b6d4" },
       { name: "Impersonation", incidents: 51, color: "#f97316" },
     ],
@@ -110,7 +110,7 @@ const platformDistributionData = [
     harmTypes: [
       { name: "Hacked Account Takeover", incidents: 1117, color: "#ef4444" },
       { name: "Impersonation", incidents: 838, color: "#f97316" },
-      { name: "Fraud/Scam", incidents: 445, color: "#8b5cf6" },
+      { name: "Fraud_and_Scams", incidents: 445, color: "#8b5cf6" },
       { name: "Harassment", incidents: 279, color: "#06b6d4" },
       { name: "Hate Speech", incidents: 445, color: "#84cc16" },
       { name: "NCII (Non-consensual)", incidents: 234, color: "#ec4899" },
@@ -120,7 +120,7 @@ const platformDistributionData = [
 
 const multiPlatformAttackPatterns = [
   { type: "Coordinated Impersonation", incidents: 1456, platforms: 2.8, trend: "+23%" },
-  { type: "Multi-Platform Fraud", incidents: 1234, platforms: 3.2, trend: "+18%" },
+  { type: "Multi-Platform Fraud_and_Scams", incidents: 1234, platforms: 3.2, trend: "+18%" },
   { type: "Account Takeover Chain", incidents: 987, platforms: 2.4, trend: "+31%" },
   { type: "Harassment Campaign", incidents: 743, platforms: 2.9, trend: "+12%" },
 ]
@@ -128,7 +128,7 @@ const multiPlatformAttackPatterns = [
 const harmTypesData = [
   { name: "Hacked Account Takeover", known: 1247, inferred: 234, color: "#ef4444" },
   { name: "Impersonation", known: 892, inferred: 156, color: "#f97316" },
-  { name: "Fraud/Scam", known: 2156, inferred: 445, color: "#8b5cf6" },
+  { name: "Fraud_and_Scams", known: 2156, inferred: 445, color: "#8b5cf6" },
   { name: "Harassment", known: 634, inferred: 89, color: "#06b6d4" },
   { name: "Hate Speech", known: 445, inferred: 67, color: "#84cc16" },
   { name: "NCII (Non-consensual)", known: 234, inferred: 78, color: "#ec4899" },
