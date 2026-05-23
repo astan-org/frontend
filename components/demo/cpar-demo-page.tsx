@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type {
   CPARResult,
@@ -132,6 +132,10 @@ export default function CparDemoPage() {
   const [sourcePlatform, setSourcePlatform] = useState("");
 
   const isRunning = useRef(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [step]);
 
   const handleSubmit = async (input: IncidentInput) => {
     if (isRunning.current) return;
