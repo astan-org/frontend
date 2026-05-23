@@ -11,16 +11,18 @@ import { cognitoAuthConfig } from "@/lib/cognitoAuthConfig";
 interface DashboardLayoutProps {
   children: ReactNode;
   currentStep?: string;
+  hideHeader?: boolean;
 }
 
 const navItems = [
   { name: "Dashboard", icon: LayoutDashboard, href: "/dashboard", id: "dashboard" },
   { name: "Reports", icon: FileText, href: "/reports", id: "reports" },
   { name: "Add Request", icon: PlusSquare, href: "/", id: "add_request" },
+  { name: "Logout", icon: LogOut, href: "#", id: "logoff" },
 ];
 const HOSTED_DOMAIN = "https://us-east-1ec0ypqy93.auth.us-east-1.amazoncognito.com";
 
-export default function DashboardLayout({ children, currentStep }: DashboardLayoutProps) {
+export default function DashboardLayout({ children, currentStep, hideHeader = false }: DashboardLayoutProps) {
   const pathname = usePathname();
 
   const isAddRequestActive =
@@ -54,17 +56,11 @@ export default function DashboardLayout({ children, currentStep }: DashboardLayo
       }
     } catch {}
 
-    const { client_id, redirect_uri, response_type, scope } = cognitoAuthConfig;
-
-    const loginUrl =
-      `${HOSTED_DOMAIN}/login?client_id=${encodeURIComponent(client_id)}` +
-      `&response_type=${encodeURIComponent(response_type)}` +
-      `&scope=${encodeURIComponent(scope)}` +
-      `&redirect_uri=${encodeURIComponent(redirect_uri)}`;
+    const { client_id, redirect_uri } = cognitoAuthConfig;
 
     const logoutUrl =
       `${HOSTED_DOMAIN}/logout?client_id=${encodeURIComponent(client_id)}` +
-      `&logout_uri=${encodeURIComponent(loginUrl)}`;
+      `&logout_uri=${encodeURIComponent(redirect_uri)}`;
 
     window.location.href = logoutUrl;
   };
@@ -122,7 +118,7 @@ export default function DashboardLayout({ children, currentStep }: DashboardLayo
       </aside>
 
       <div className="flex flex-1 flex-col">
-        <header className="flex h-16 items-center justify-between border-b bg-white px-6 sticky top-0 z-10" />
+        {!hideHeader && <header className="flex h-16 items-center justify-between border-b bg-white px-6 sticky top-0 z-10" />}
         <main className="flex-1 overflow-y-auto bg-gray-50 p-6">
           <div className="max-w-5xl mx-auto">{children}</div>
         </main>

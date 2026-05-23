@@ -78,12 +78,10 @@ export default function IncidentFlowPage() {
   }
 
   if (!auth.isAuthenticated) {
+    auth.signinRedirect();
     return (
-      <div className="flex flex-col items-center justify-center h-screen text-center">
-        <h2 className="text-2xl font-semibold mb-4">
-          You must be signed in to access this page.
-        </h2>
-        <Button onClick={() => auth.signinRedirect()}>Login</Button>
+      <div className="flex items-center justify-center h-screen">
+        <Loader2 className="h-8 w-8 animate-spin" />
       </div>
     );
   }
