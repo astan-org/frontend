@@ -22,20 +22,31 @@ type Step = "dashboard" | "input" | "results" | "audit";
 
 function extractStreamingReasoning(buf: string): string {
   const keyIdx = buf.indexOf('"ai_reasoning"');
-  if (keyIdx === -1) return '';
+  if (keyIdx === -1) return "";
   const afterKey = buf.slice(keyIdx + '"ai_reasoning"'.length);
   const colonMatch = afterKey.match(/^\s*:\s*"/);
-  if (!colonMatch) return '';
+  if (!colonMatch) return "";
   const valueStart = afterKey.slice(colonMatch[0].length);
-  let result = '';
+  let result = "";
   for (let i = 0; i < valueStart.length; i++) {
-    if (valueStart[i] === '\\' && i + 1 < valueStart.length) {
+    if (valueStart[i] === "\\" && i + 1 < valueStart.length) {
       const next = valueStart[i + 1];
-      if (next === 'n') { result += '\n'; i++; }
-      else if (next === 't') { result += '\t'; i++; }
-      else if (next === '"') { result += '"'; i++; }
-      else if (next === '\\') { result += '\\'; i++; }
-      else { result += next; i++; }
+      if (next === "n") {
+        result += "\n";
+        i++;
+      } else if (next === "t") {
+        result += "\t";
+        i++;
+      } else if (next === '"') {
+        result += '"';
+        i++;
+      } else if (next === "\\") {
+        result += "\\";
+        i++;
+      } else {
+        result += next;
+        i++;
+      }
     } else if (valueStart[i] === '"') {
       break;
     } else {
@@ -176,7 +187,7 @@ export default function CparDemoPage() {
   const [dispatchComplete, setDispatchComplete] = useState(false);
   const [sourcePlatform, setSourcePlatform] = useState("");
 
-  const [streamingReasoning, setStreamingReasoning] = useState('');
+  const [streamingReasoning, setStreamingReasoning] = useState("");
 
   const [liveCount, setLiveCount] = useState(3247);
   const [ncmecCount, setNcmecCount] = useState(142);
@@ -196,7 +207,7 @@ export default function CparDemoPage() {
 
     setDemoState("loading");
     setResult(null);
-    setStreamingReasoning('');
+    setStreamingReasoning("");
     setPlatformStates({});
     setDispatchComplete(false);
     setSourcePlatform(input.platform);
@@ -213,7 +224,7 @@ export default function CparDemoPage() {
 
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
-      let buffer = '';
+      let buffer = "";
 
       while (true) {
         const { done, value } = await reader.read();
@@ -223,14 +234,14 @@ export default function CparDemoPage() {
         if (reasoning) setStreamingReasoning(reasoning);
       }
 
-      const cleaned = buffer.replace(/^```json\s*/i, '').replace(/\s*```$/, '');
+      const cleaned = buffer.replace(/^```json\s*/i, "").replace(/\s*```$/, "");
       const json = JSON.parse(cleaned);
       if (json.error) throw new Error(json.error);
       classification = json as CPARResult;
     } catch {
       classification = classify(input);
     }
-    setStreamingReasoning('');
+    setStreamingReasoning("");
 
     const incidentId = `CPAR-INC-${new Date().toISOString().slice(2, 10).replace(/-/g, "")}-${Math.floor(Math.random() * 900 + 100)}`;
     classification._id = incidentId;
@@ -270,7 +281,7 @@ export default function CparDemoPage() {
     setStep("dashboard");
     setDemoState("idle");
     setResult(null);
-    setStreamingReasoning('');
+    setStreamingReasoning("");
     setPlatformStates({});
     setDispatchComplete(false);
   };
@@ -302,7 +313,7 @@ export default function CparDemoPage() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                   </span>
-                  Cross-Platform AI Response · Live Command Center
+                  Cross-Platform Abuse Reporting · Live Command Center
                 </p>
               </div>
               <button
@@ -489,7 +500,11 @@ export default function CparDemoPage() {
                     setChartData((prev) => {
                       const next = [...prev];
                       const last = next[next.length - 1];
-                      next[next.length - 1] = { ...last, incidents: last.incidents + Math.floor(Math.random() * 6 + 3) };
+                      next[next.length - 1] = {
+                        ...last,
+                        incidents:
+                          last.incidents + Math.floor(Math.random() * 6 + 3),
+                      };
                       return next;
                     });
                   }}

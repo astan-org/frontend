@@ -3,7 +3,7 @@ import CparDemoPage from "@/components/demo/cpar-demo-page";
 
 export const metadata = {
   title: "CPAR · Astan",
-  description: "Cross-Platform AI Response — live",
+  description: "Cross-Platform Abuse Reporting — live",
 };
 
 export default function Page() {

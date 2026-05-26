@@ -1,8 +1,8 @@
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic({ apiKey: process.env.CLAUDE_API_KEY });
 
-const SYSTEM = `You are CPAR (Cross-Platform AI Response), a specialized AI safety classification engine used by trust-and-safety teams across major social media platforms.
+const SYSTEM = `You are CPAR (Cross-Platform Abuse Reporting), a specialized AI safety classification engine used by trust-and-safety teams across major social media platforms.
 
 Your task: analyse an online harm incident report and return a JSON classification.
 
@@ -35,13 +35,13 @@ Strict rules:
 
 export async function POST(req: Request) {
   try {
-    const { text } = await req.json() as { text: string };
+    const { text } = (await req.json()) as { text: string };
 
     const anthropicStream = client.messages.stream({
-      model: 'claude-haiku-4-5-20251001',
+      model: "claude-haiku-4-5-20251001",
       max_tokens: 1024,
       system: SYSTEM,
-      messages: [{ role: 'user', content: `Incident report:\n\n${text}` }],
+      messages: [{ role: "user", content: `Incident report:\n\n${text}` }],
     });
 
     const readable = new ReadableStream({
@@ -49,8 +49,8 @@ export async function POST(req: Request) {
         try {
           for await (const event of anthropicStream) {
             if (
-              event.type === 'content_block_delta' &&
-              event.delta.type === 'text_delta'
+              event.type === "content_block_delta" &&
+              event.delta.type === "text_delta"
             ) {
               controller.enqueue(new TextEncoder().encode(event.delta.text));
             }
@@ -67,15 +67,15 @@ export async function POST(req: Request) {
 
     return new Response(readable, {
       headers: {
-        'Content-Type': 'text/plain; charset=utf-8',
-        'Cache-Control': 'no-cache',
+        "Content-Type": "text/plain; charset=utf-8",
+        "Cache-Control": "no-cache",
       },
     });
   } catch (err) {
-    console.error('[CPAR classify]', err);
-    return new Response(JSON.stringify({ error: 'Classification failed' }), {
+    console.error("[CPAR classify]", err);
+    return new Response(JSON.stringify({ error: "Classification failed" }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Content-Type": "application/json" },
     });
   }
 }
