@@ -1,15 +1,5 @@
-import DashboardLayout from "@/components/layout/dashboard-layout";
-import CparDemoPage from "@/components/demo/cpar-demo-page";
-
-export const metadata = {
-  title: "CPAR · Astan",
-  description: "Cross-Platform AI Response — live",
-};
+import { redirect } from "next/navigation";
 
 export default function DemoPage() {
-  return (
-    <DashboardLayout hideHeader>
-      <CparDemoPage />
-    </DashboardLayout>
-  );
+  redirect("/");
 }

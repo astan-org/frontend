@@ -37,11 +37,17 @@ function buildRows(result: CPARResult, sourceMode: SourceMode, sourcePlatform: s
           source: 'CPAR/Intake',
           message: `RECEIVED user report from ${sourcePlatform} via native report flow`,
         }
-      : {
-          time: addSecs(base, 0),
-          source: 'CPAR/Intake',
-          message: `RECEIVED analyst escalation — ${sourcePlatform} Trust & Safety team`,
-        };
+      : sourceMode === 'analyst'
+        ? {
+            time: addSecs(base, 0),
+            source: 'CPAR/Intake',
+            message: `RECEIVED analyst escalation — ${sourcePlatform} Trust & Safety team`,
+          }
+        : {
+            time: addSecs(base, 0),
+            source: 'CPAR/Detector',
+            message: `AUTO-DETECTED signal via ${sourcePlatform} safety monitoring — no human trigger`,
+          };
 
   const dispatchRows: LogRow[] = result.dispatch_targets.map((p, i) => ({
     time: addSecs(base, 4 + i),
@@ -146,7 +152,7 @@ export default function AuditTrail({ result, sourceMode, sourcePlatform, onReset
   };
 
   return (
-    <div className="bg-white border border-slate-200 rounded-xl shadow-sm p-6">
+    <div className="bg-white border border-slate-200 rounded-xl shadow-sm p-4 sm:p-6">
       {/* Header */}
       <div className="flex items-start justify-between flex-wrap gap-4 mb-5">
         <div className="flex items-baseline gap-4 flex-wrap">
@@ -177,11 +183,10 @@ export default function AuditTrail({ result, sourceMode, sourcePlatform, onReset
         {allRows.slice(0, visibleCount).map((row, i) => (
           <div
             key={i}
-            className="grid px-5 py-[5px] text-xs font-mono gap-3 items-baseline animate-in fade-in slide-in-from-left-1 duration-200"
-            style={{ gridTemplateColumns: '72px 130px 1fr' }}
+            className="grid px-4 sm:px-5 py-[5px] text-xs font-mono gap-x-3 items-baseline animate-in fade-in slide-in-from-left-1 duration-200 grid-cols-[60px_1fr] sm:grid-cols-[72px_130px_1fr]"
           >
             <span className="text-slate-600 shrink-0">{row.time}</span>
-            <span className="text-cyan-400 shrink-0">{row.source}</span>
+            <span className="hidden sm:inline text-cyan-400 shrink-0">{row.source}</span>
             <span className={row.isSeal ? 'text-emerald-400' : 'text-slate-300'}>{row.message}</span>
           </div>
         ))}

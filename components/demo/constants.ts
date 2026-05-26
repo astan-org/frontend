@@ -42,12 +42,51 @@ export const SCENARIOS = [
   },
 ] as const;
 
-export const CHART_DATA = [
-  { month: 'Dec', incidents: 120 },
-  { month: 'Jan', incidents: 195 },
-  { month: 'Feb', incidents: 248 },
-  { month: 'Mar', incidents: 426 },
-  { month: 'Apr', incidents: 312 },
-  { month: 'May', incidents: 358 },
-  { month: 'Jun', incidents: 394 },
-];
+// Auto-detected incident pool — used by the live feed (mock classifier, not Claude API)
+export const DETECTED_POOL = [
+  {
+    platform: 'Discord',
+    text: "Account cluster on Discord exhibiting coordinated grooming pattern — 4 accounts created within 48h targeting a gaming server with 340 members aged 10-16. Accounts sending direct messages requesting platform migration to Snapchat and requesting photos. Pattern matches 3 prior flagged networks from this quarter.",
+  },
+  {
+    platform: 'TikTok',
+    text: "Coordinated network of 18 TikTok accounts running live investment scam livestreams targeting elderly users, redirecting to WhatsApp groups promising guaranteed 40% returns. $65k in reported losses. Accounts exhibit coordinated posting times and shared narration script.",
+  },
+  {
+    platform: 'Snapchat',
+    text: "Sextortion pattern detected — accounts soliciting intimate images from teenagers aged 14-17 using grooming script, then deploying images for financial coercion. 6 victims identified across Snapchat. Actor using VPN rotation and disposable account pattern to evade detection.",
+  },
+  {
+    platform: 'Meta (Facebook/Instagram)',
+    text: "Network of 23 fake accounts impersonating EU humanitarian aid organizations, soliciting cryptocurrency donations. Coordinated posting pattern with shared imagery. Estimated €14k raised from 90 victims over 6 days. No legitimate charity registration found.",
+  },
+  {
+    platform: 'Roblox',
+    text: "Repeated harassment campaign in Roblox game lobbies — same actor pattern across 5 accounts targeting a 13-year-old user. Behaviour escalating to direct threats and doxxing attempt. 4 prior bans bypassed via new account creation within 72h each time.",
+  },
+  {
+    platform: 'Discord',
+    text: "Discord server coordinating Zoom bombing attacks on school sessions. 47-member private server, raid coordination visible in #ops channel. 3 schools targeted this week. Hateful imagery, racial slurs, and extremist content deployed during attacks on sessions of ~30 students each.",
+  },
+  {
+    platform: 'TikTok',
+    text: "CSAM signal detected — TikTok account posting content with PhotoDNA hash matches against known CSAM database. Account active 72 hours, 0 followers, posting every 4 minutes. Cross-platform check indicates same actor operating under different handle on Discord.",
+  },
+  {
+    platform: 'Meta (Facebook/Instagram)',
+    text: "Romance scam network on Facebook targeting widowed users aged 55+. 11 interconnected fake accounts, average 10-week grooming cycle before requesting wire transfers. 7 confirmed victims identified, total reported losses $230k. Accounts share IP ranges and profile creation timestamps.",
+  },
+] as const;
+
+const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const INCIDENT_COUNTS = [120, 195, 248, 426, 312, 358];
+
+function buildChartData() {
+  const now = new Date();
+  return INCIDENT_COUNTS.map((incidents, i) => {
+    const d = new Date(now.getFullYear(), now.getMonth() - (5 - i), 1);
+    return { month: MONTH_NAMES[d.getMonth()], incidents };
+  });
+}
+
+export const CHART_DATA = buildChartData();

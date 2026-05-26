@@ -53,7 +53,7 @@ export default function PlatformDispatch({ result, platformStates, isComplete, d
   const dimmedCount = result ? PLATFORMS.length - result.dispatch_targets.length : 0;
 
   return (
-    <div className="bg-white border border-slate-200 rounded-xl shadow-sm p-6">
+    <div className="bg-white border border-slate-200 rounded-xl shadow-sm p-4 sm:p-6">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-sm font-semibold text-slate-900">Platform Dispatch</h3>
         <span

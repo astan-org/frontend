@@ -60,9 +60,9 @@ export default function IncidentInput({ sourceMode, onSwitchMode, onSubmit, disa
     'w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2.5 text-sm text-slate-900 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all';
 
   return (
-    <div className="bg-white border border-slate-200 rounded-xl shadow-sm p-6">
+    <div className="bg-white border border-slate-200 rounded-xl shadow-sm p-4 sm:p-6">
       {/* Toggle + counter */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6">
         <div className="flex bg-slate-100 border border-slate-200 p-1 rounded-full gap-1">
           {(['user', 'analyst'] as SourceMode[]).map(mode => (
             <button
@@ -95,7 +95,7 @@ export default function IncidentInput({ sourceMode, onSwitchMode, onSubmit, disa
       {/* User Report form */}
       {sourceMode === 'user' && (
         <div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-[10px] font-medium text-slate-400 uppercase tracking-widest mb-2">
                 Platform
@@ -124,14 +124,14 @@ export default function IncidentInput({ sourceMode, onSwitchMode, onSubmit, disa
               />
             </div>
           </div>
-          <div className="flex items-center justify-between mt-5">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mt-5">
             <p className="text-xs text-slate-400">
               Report routes to CPAR · classified in ~2s · dispatched across platforms
             </p>
             <button
               onClick={handleSubmit}
               disabled={disabled}
-              className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-medium px-6 py-2.5 rounded-full transition-all flex items-center gap-2 shadow-sm"
+              className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-medium px-6 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 shadow-sm"
             >
               {disabled ? 'Processing…' : 'Submit Report'}
               {!disabled && <span aria-hidden>→</span>}
@@ -143,7 +143,7 @@ export default function IncidentInput({ sourceMode, onSwitchMode, onSubmit, disa
       {/* Analyst Review form */}
       {sourceMode === 'analyst' && (
         <div>
-          <div className="grid grid-cols-3 gap-2.5 mb-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mb-4">
             {SCENARIOS.map((s, i) => (
               <button
                 key={i}
@@ -176,14 +176,14 @@ export default function IncidentInput({ sourceMode, onSwitchMode, onSubmit, disa
               className={`${textareaClass} h-24`}
             />
           </div>
-          <div className="flex items-center justify-between mt-5">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mt-5">
             <p className="text-xs text-slate-400">
               Same classifier · same dispatch · audit trail logs analyst origin
             </p>
             <button
               onClick={handleSubmit}
               disabled={disabled}
-              className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-medium px-6 py-2.5 rounded-full transition-all flex items-center gap-2 shadow-sm"
+              className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-medium px-6 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 shadow-sm"
             >
               {disabled ? 'Processing…' : 'Analyze & Dispatch'}
               {!disabled && <span aria-hidden>→</span>}

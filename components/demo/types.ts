@@ -1,5 +1,5 @@
 export type RiskLevel = 'critical' | 'high' | 'medium' | 'low';
-export type SourceMode = 'user' | 'analyst';
+export type SourceMode = 'user' | 'analyst' | 'detected';
 export type DemoState = 'idle' | 'loading' | 'classified' | 'dispatching' | 'complete' | 'error';
 export type PlatformStatus = 'standby' | 'notifying' | 'complete';
 

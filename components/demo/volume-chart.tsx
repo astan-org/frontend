@@ -9,8 +9,6 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-import { CHART_DATA } from './constants';
-
 function CustomTooltip({ active, payload, label }: {
   active?: boolean;
   payload?: Array<{ value: number }>;
@@ -25,9 +23,9 @@ function CustomTooltip({ active, payload, label }: {
   );
 }
 
-export default function VolumeChart() {
+export default function VolumeChart({ data }: { data: Array<{ month: string; incidents: number }> }) {
   return (
-    <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm h-full flex flex-col">
+    <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
       <div className="flex items-center justify-between mb-4">
         <p className="text-sm font-semibold text-slate-900">Dispatch Volume</p>
         <div className="flex items-center gap-3 text-xs text-slate-400">
@@ -38,9 +36,9 @@ export default function VolumeChart() {
           <span>Last 6 months</span>
         </div>
       </div>
-      <div className="flex-1 min-h-[110px]">
+      <div className="h-[160px]">
         <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={CHART_DATA} margin={{ top: 5, right: 5, bottom: 0, left: -22 }}>
+          <AreaChart data={data} margin={{ top: 5, right: 5, bottom: 0, left: 5 }}>
             <defs>
               <linearGradient id="incidentGradient" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#2563eb" stopOpacity={0.15} />
@@ -58,7 +56,8 @@ export default function VolumeChart() {
               tick={{ fontSize: 10, fill: '#94a3b8', fontFamily: 'inherit' }}
               axisLine={false}
               tickLine={false}
-              width={38}
+              width={34}
+              tickFormatter={(v: number) => v >= 1000 ? `${(v / 1000).toFixed(1)}k` : String(v)}
             />
             <Tooltip content={<CustomTooltip />} cursor={{ stroke: '#e2e8f0', strokeWidth: 1 }} />
             <Area

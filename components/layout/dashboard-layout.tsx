@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { LayoutDashboard, FileText, LogOut, PlusSquare } from "lucide-react";
+import { LayoutDashboard, FileText, LogOut, PlusSquare, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
@@ -15,9 +15,10 @@ interface DashboardLayoutProps {
 }
 
 const navItems = [
+  { name: "CPAR", icon: Shield, href: "/", id: "cpar" },
   { name: "Dashboard", icon: LayoutDashboard, href: "/dashboard", id: "dashboard" },
   { name: "Reports", icon: FileText, href: "/reports", id: "reports" },
-  { name: "Add Request", icon: PlusSquare, href: "/", id: "add_request" },
+  { name: "Add Request", icon: PlusSquare, href: "/requests", id: "add_request" },
   { name: "Logout", icon: LogOut, href: "#", id: "logoff" },
 ];
 const HOSTED_DOMAIN = "https://us-east-1ec0ypqy93.auth.us-east-1.amazoncognito.com";
@@ -37,7 +38,6 @@ export default function DashboardLayout({ children, currentStep, hideHeader = fa
     if (item.href === "#") return false;
     if (pathname === item.href) return true;
     if (item.href !== "/" && pathname.startsWith(item.href + "/")) return true;
-    if (item.href === "/" && pathname === "/" && !isAddRequestActive) return true;
     return false;
   };
 
@@ -117,9 +117,21 @@ export default function DashboardLayout({ children, currentStep, hideHeader = fa
         </nav>
       </aside>
 
-      <div className="flex flex-1 flex-col">
-        {!hideHeader && <header className="flex h-16 items-center justify-between border-b bg-white px-6 sticky top-0 z-10" />}
-        <main className="flex-1 overflow-y-auto bg-gray-50 p-6">
+      <div className="flex flex-1 flex-col min-w-0">
+        {/* Mobile-only top bar */}
+        <header className="md:hidden flex h-14 items-center border-b bg-white px-4 sticky top-0 z-10 shrink-0">
+          <Link href="/">
+            <Image
+              src="/assets/logo.png"
+              alt="Astan Logo"
+              width={90}
+              height={30}
+              className="object-contain"
+            />
+          </Link>
+        </header>
+        {!hideHeader && <header className="hidden md:flex h-16 items-center justify-between border-b bg-white px-6 sticky top-0 z-10" />}
+        <main className="flex-1 overflow-y-auto bg-gray-50 p-4 sm:p-6">
           <div className="max-w-5xl mx-auto">{children}</div>
         </main>
       </div>
