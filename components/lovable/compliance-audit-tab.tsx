@@ -279,8 +279,8 @@ export default function ComplianceAuditTab() {
               <div className="w-2.5 h-2.5 rounded-full bg-amber-500/60" />
               <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/60" />
             </div>
-            <span className="font-mono text-[10px] text-slate-500 ml-2">
-              CPAR-DET-260602-D10D671 · compliance-audit.log
+            <span className="font-mono text-[10px] text-slate-500 ml-2 truncate">
+              <span className="hidden sm:inline">CPAR-DET-260602-D10D671 · </span>compliance-audit.log
             </span>
             <div className="flex-1" />
             <span className="font-mono text-[10px] text-slate-600">{AUDIT_ENTRIES.length} entries</span>
@@ -300,10 +300,10 @@ export default function ComplianceAuditTab() {
                     <div className="w-px flex-1 mt-2 bg-slate-700" />
                   </div>
                   <div className="flex-1 min-w-0 pb-1">
-                    <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                      <span className="font-mono text-[10px] text-slate-500">{entry.ts}</span>
-                      <span className={`font-mono text-[10px] font-bold ${c.text}`}>{entry.article}</span>
-                      <span className={`font-mono text-[9px] px-2 py-0.5 rounded-full border uppercase tracking-wide font-semibold ${STATUS_STYLES[entry.status]}`}>
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-1.5">
+                      <span className="font-mono text-[10px] text-slate-500 shrink-0">{entry.ts}</span>
+                      <span className={`font-mono text-[10px] font-bold shrink-0 ${c.text}`}>{entry.article}</span>
+                      <span className={`font-mono text-[9px] px-2 py-0.5 rounded-full border uppercase tracking-wide font-semibold shrink-0 ${STATUS_STYLES[entry.status]}`}>
                         {entry.status}
                       </span>
                     </div>

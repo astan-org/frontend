@@ -141,34 +141,36 @@ export default function LovableThreatPage() {
         </div>
       </div>
 
-      {/* Pill tab bar */}
+      {/* Pill tab bar — scrollable on mobile */}
       <div
-        className="flex items-center bg-slate-100 rounded-full p-1 mb-6 w-fit gap-0.5"
-        style={{ marginBottom: 20 }}
+        className="overflow-x-auto max-w-full mb-5"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
       >
-        {TABS.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id as TabId)}
-            className={`relative flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full transition-colors whitespace-nowrap z-10 ${
-              activeTab === tab.id
-                ? "text-blue-600"
-                : "text-slate-500 hover:text-slate-700"
-            }`}
-          >
-            {activeTab === tab.id && (
-              <motion.div
-                layoutId="pill-bg"
-                className="absolute inset-0 bg-white rounded-full shadow-sm"
-                transition={{ type: "spring", stiffness: 400, damping: 32 }}
-              />
-            )}
-            <span className="relative z-10 flex items-center gap-2">
-              {tab.icon}
-              {tab.label}
-            </span>
-          </button>
-        ))}
+        <div className="flex items-center bg-slate-100 rounded-full p-1 gap-0.5 w-fit min-w-fit">
+          {TABS.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id as TabId)}
+              className={`relative flex items-center gap-2 px-3 sm:px-4 py-2 text-sm font-medium rounded-full transition-colors whitespace-nowrap z-10 ${
+                activeTab === tab.id
+                  ? "text-blue-600"
+                  : "text-slate-500 hover:text-slate-700"
+              }`}
+            >
+              {activeTab === tab.id && (
+                <motion.div
+                  layoutId="pill-bg"
+                  className="absolute inset-0 bg-white rounded-full shadow-sm"
+                  transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                />
+              )}
+              <span className="relative z-10 flex items-center gap-2">
+                {tab.icon}
+                {tab.label}
+              </span>
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Hero — only on lateral movement tab */}

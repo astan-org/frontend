@@ -189,8 +189,8 @@ function RecipientRow({
 
         {/* Content */}
         <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between gap-2 mb-1">
-            <div>
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-2 mb-1">
+            <div className="min-w-0">
               <p className="text-sm font-semibold text-slate-900 leading-snug">{r.name}</p>
               <p className="font-mono text-[10px] text-slate-400 mt-0.5">{r.article}</p>
             </div>
@@ -274,12 +274,12 @@ export default function DispatchTab() {
       <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div>
-            <div className="flex items-center gap-2 mb-1">
-              <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 mb-1">
+              <svg className="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
               <p className="text-sm font-semibold text-slate-900">Dispatching report for</p>
-              <span className="font-mono text-xs text-slate-500">CPAR-DET-260602-D10D671</span>
+              <span className="font-mono text-xs text-slate-500 break-all">CPAR-DET-260602-D10D671</span>
             </div>
             <p className="text-xs text-slate-400">
               Harm type: Credential phishing + CSEA signals · Severity 9/10 · {selected.size} recipient{selected.size !== 1 ? "s" : ""} selected · {sentCount} dispatched
