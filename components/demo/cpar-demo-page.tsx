@@ -17,6 +17,7 @@ import ClassificationCard from "./classification-card";
 import PlatformDispatch from "./platform-dispatch";
 import AuditTrail from "./audit-trail";
 import DetectedFeed from "./detected-feed";
+import Link from "next/link";
 
 type Step = "dashboard" | "input" | "results" | "audit";
 
@@ -316,25 +317,37 @@ export default function CparDemoPage() {
                   Cross-Platform Abuse Reporting · Live Command Center
                 </p>
               </div>
-              <button
-                onClick={() => setStep("input")}
-                className="flex items-center gap-2 bg-slate-900 hover:bg-blue-600 text-white text-sm font-medium px-5 py-2.5 rounded-full transition-all shadow-sm"
-              >
-                <svg
-                  className="w-3.5 h-3.5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
+              <div className="flex items-center gap-2">
+                <Link
+                  href="/lovable"
+                  className="flex items-center gap-2 text-xs font-medium text-slate-600 border border-slate-200 hover:border-rose-300 hover:text-rose-600 hover:bg-rose-50 px-4 py-2.5 rounded-full transition-all"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 5v14M5 12h14"
-                  />
-                </svg>
-                Submit Report
-              </button>
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500" />
+                  </span>
+                  Lovable Threat
+                </Link>
+                <button
+                  onClick={() => setStep("input")}
+                  className="flex items-center gap-2 bg-slate-900 hover:bg-blue-600 text-white text-sm font-medium px-5 py-2.5 rounded-full transition-all shadow-sm"
+                >
+                  <svg
+                    className="w-3.5 h-3.5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 5v14M5 12h14"
+                    />
+                  </svg>
+                  Submit Report
+                </button>
+              </div>
             </div>
 
             {/* Stat cards */}
