@@ -73,7 +73,7 @@ const AUDIT_ENTRIES = [
     law: "REPORT Act 2024",
     article: "18 U.S.C. § 2258A",
     actor: "CPAR/Compliance",
-    action: "NCMEC CyberTipline report filed — child safety signals (CSEA) detected in Lovable.app incident cluster",
+    action: "NCMEC CyberTipline report filed — child safety signals (CSEA) detected in incident cluster originating from a Lovable-built app",
     status: "compliant" as const,
     hash: "3a7f2c…d9e1",
     color: "rose" as const,

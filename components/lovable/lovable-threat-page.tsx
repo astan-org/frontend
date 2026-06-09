@@ -144,7 +144,13 @@ export default function LovableThreatPage() {
       {/* Pill tab bar — scrollable on mobile */}
       <div
         className="overflow-x-auto max-w-full mb-5"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
+        style={
+          {
+            marginBottom: 20,
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+          } as React.CSSProperties
+        }
       >
         <div className="flex items-center bg-slate-100 rounded-full p-1 gap-0.5 w-fit min-w-fit">
           {TABS.map((tab) => (
@@ -205,13 +211,13 @@ export default function LovableThreatPage() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <h1 className="text-lg font-semibold text-white mb-1">
-                    Lovable.app — Cross-Platform Harm Campaign
+                    Lovable-Built App — Cross-Platform Harm Campaign
                   </h1>
                   <p className="text-sm text-white/65 leading-relaxed">
-                    Lovable AI builder weaponised to generate phishing kits at
-                    scale. Harm spreading across 6 platforms via credential
-                    exfiltration, social engineering, and child-safety attack
-                    chains.
+                    A threat actor exploited Lovable's AI builder to rapidly
+                    deploy phishing infrastructure at scale. Harm spreading
+                    across 6 platforms via credential exfiltration, social
+                    engineering, and child-safety attack chains.
                   </p>
                 </div>
                 <div className="hidden sm:flex flex-col items-end gap-1 shrink-0">

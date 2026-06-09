@@ -7,9 +7,9 @@ import Image from "next/image";
 const CHAIN = [
   {
     stage: "01",
-    label: "Lovable.app",
-    role: "Attack origin",
-    desc: "Attacker prompts Lovable AI to generate a full phishing kit — free SSL, high-rep subdomain, zero cost.",
+    label: "App built on Lovable",
+    role: "Threat actor entry point",
+    desc: "Threat actor uses Lovable's AI builder to rapidly deploy a convincing phishing app — legitimate subdomain, free SSL, zero infrastructure cost.",
     icon: (
       <Image
         src="/assets/lovable-icon-bg-light.png"
@@ -202,6 +202,88 @@ export default function LateralMovementTab() {
 
   return (
     <div className="space-y-5">
+      {/* Downstream platforms */}
+      <div className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-sm">
+        <div className="flex items-center gap-2 mb-5">
+          <svg
+            className="w-4 h-4 text-slate-400"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            viewBox="0 0 24 24"
+          >
+            <circle cx="12" cy="5" r="2" />
+            <circle cx="5" cy="19" r="2" />
+            <circle cx="19" cy="19" r="2" />
+            <path
+              strokeLinecap="round"
+              d="M12 7v4M6.5 17.5l4-3.5M17.5 17.5l-4-3.5"
+            />
+          </svg>
+          <h3 className="text-sm font-semibold text-slate-900">
+            Downstream Platforms
+          </h3>
+          <div className="flex-1 h-px bg-slate-100" />
+          <span className="text-xs text-slate-400">6 implicated</span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {PLATFORMS.map((p, i) => {
+            const r = RISK[p.risk];
+            return (
+              <motion.div
+                key={p.name}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.07, duration: 0.3 }}
+                className="bg-slate-50 border border-slate-200 rounded-xl p-4 hover:bg-white hover:shadow-sm transition-all duration-200"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-9 h-9 bg-white rounded-xl border border-slate-200 flex items-center justify-center shrink-0 shadow-sm">
+                    <Image
+                      src={p.logo}
+                      alt={p.name}
+                      width={22}
+                      height={22}
+                      className="object-contain"
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold text-slate-900 leading-tight truncate">
+                      {p.name}
+                    </p>
+                    <p className="text-[10px] text-slate-400 uppercase tracking-widest">
+                      {p.role}
+                    </p>
+                  </div>
+                  <span
+                    className={`font-mono text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full border shrink-0 ${r.badge}`}
+                  >
+                    {p.risk}
+                  </span>
+                </div>
+                <p className="text-xs text-slate-500 leading-relaxed mb-3">
+                  {p.detail}
+                </p>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <span className={`w-1.5 h-1.5 rounded-full ${r.dot}`} />
+                    <span className="font-mono text-[10px] text-slate-400">
+                      {p.stat}
+                    </span>
+                  </div>
+                  <div className="w-16 h-1 bg-slate-200 rounded-full overflow-hidden">
+                    <div
+                      className={`h-full ${r.bar} ${SEVERITY_WIDTH[p.risk]} rounded-full`}
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+
       {/* Attack chain */}
       <div className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-sm">
         <div className="flex items-center gap-2 mb-5">
@@ -396,87 +478,6 @@ export default function LateralMovementTab() {
         </div>
       </div>
 
-      {/* Downstream platforms */}
-      <div className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-sm">
-        <div className="flex items-center gap-2 mb-5">
-          <svg
-            className="w-4 h-4 text-slate-400"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            viewBox="0 0 24 24"
-          >
-            <circle cx="12" cy="5" r="2" />
-            <circle cx="5" cy="19" r="2" />
-            <circle cx="19" cy="19" r="2" />
-            <path
-              strokeLinecap="round"
-              d="M12 7v4M6.5 17.5l4-3.5M17.5 17.5l-4-3.5"
-            />
-          </svg>
-          <h3 className="text-sm font-semibold text-slate-900">
-            Downstream Platforms
-          </h3>
-          <div className="flex-1 h-px bg-slate-100" />
-          <span className="text-xs text-slate-400">6 implicated</span>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {PLATFORMS.map((p, i) => {
-            const r = RISK[p.risk];
-            return (
-              <motion.div
-                key={p.name}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.07, duration: 0.3 }}
-                className="bg-slate-50 border border-slate-200 rounded-xl p-4 hover:bg-white hover:shadow-sm transition-all duration-200"
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-9 h-9 bg-white rounded-xl border border-slate-200 flex items-center justify-center shrink-0 shadow-sm">
-                    <Image
-                      src={p.logo}
-                      alt={p.name}
-                      width={22}
-                      height={22}
-                      className="object-contain"
-                    />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-slate-900 leading-tight truncate">
-                      {p.name}
-                    </p>
-                    <p className="text-[10px] text-slate-400 uppercase tracking-widest">
-                      {p.role}
-                    </p>
-                  </div>
-                  <span
-                    className={`font-mono text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full border shrink-0 ${r.badge}`}
-                  >
-                    {p.risk}
-                  </span>
-                </div>
-                <p className="text-xs text-slate-500 leading-relaxed mb-3">
-                  {p.detail}
-                </p>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1.5">
-                    <span className={`w-1.5 h-1.5 rounded-full ${r.dot}`} />
-                    <span className="font-mono text-[10px] text-slate-400">
-                      {p.stat}
-                    </span>
-                  </div>
-                  <div className="w-16 h-1 bg-slate-200 rounded-full overflow-hidden">
-                    <div
-                      className={`h-full ${r.bar} ${SEVERITY_WIDTH[p.risk]} rounded-full`}
-                    />
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-      </div>
     </div>
   );
 }
