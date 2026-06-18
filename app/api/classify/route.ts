@@ -29,7 +29,12 @@ Required schema (all fields required):
 Strict rules:
 - Child safety incidents: severity must be 10, ncmec_required must be true, risk_level must be "critical", include "NCMEC_MANDATORY" and "CHILD_SAFETY_OVERRIDE"
 - Make ai_reasoning specific — reference actual details from the report, not generic text
-- dispatch_targets: only platforms directly involved or at risk of actor migration
+- dispatch_targets: CPAR's entire value proposition is catching cross-platform harm, not single-platform reports. Always include the platform explicitly named in the report, THEN add 1-2 more platforms from the available list that this harm pattern realistically migrates to or co-occurs on, even if the report text doesn't mention them by name:
+  - Romance scams / investment fraud / financial scams: actors almost always run the same playbook across multiple platforms and move victims toward payment coordination — include at least 2-3 platforms total (the reported platform + likely co-occurring ones, e.g. Meta (Facebook/Instagram), Snapchat, TikTok)
+  - Grooming / CSEA signals: include the reported platform + a commonly paired migration target (Discord ↔ Snapchat, TikTok ↔ Discord are known pairs) in addition to mandatory NCMEC
+  - Coordinated harassment / raids: include every platform where the actor or coordination is actively occurring
+  - Truly isolated, low-severity, single-account reports with no network or migration signal: 1 platform is acceptable
+  - Do not pick more than 3 platforms total and never include a platform with no plausible connection to the incident
 - Be decisive on risk_level — do not hedge
 - platform_actions values must be action strings, not empty`;
 
